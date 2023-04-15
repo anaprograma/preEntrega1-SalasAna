@@ -13,6 +13,8 @@ let total = 0;
 let compra = 0;
 let precio = 0;
 
+// aca muestro el total gastado y cuantos productos compro
+// ademas solicita medios de pagos
 function mostrarResultados() {
   alert(`usted ha comprado:
   ${sumaRemera} remeras
@@ -21,7 +23,7 @@ function mostrarResultados() {
   ${sumaPantalon} pantalones
   el total de la compra es de ${sumartotal} pesos.`);
 
-  while (true) {
+  while (sumartotal != 0) {
     medioDePago = prompt(`
       Seleccione medio de pago:
       1 para efectivo 
@@ -74,7 +76,7 @@ function mostrarResultados() {
     }
   }
 }
-
+// solicito ingrese la compra que desea y suma los totales
 while (true) {
   compra = prompt(`seleccione lo que quiera comprar:
 1 para remera 
