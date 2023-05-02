@@ -83,9 +83,9 @@ while (true) {
 2 para pantalon 
 3 para bermuda 
 4 para campera
-y "fin" si desea terminar de comprar`);
+y "fin" si desea terminar de comprar`).toLowerCase;
 
-  if (compra == "fin" || compra == "FIN") {
+  if (compra == "fin") {
     alert(`el total es : ${sumartotal} pesos`);
     break;
   } else if (compra == 1) {
