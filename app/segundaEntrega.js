@@ -1,18 +1,10 @@
-// CONSTRUCTOR / PLANTILLA - TEMPLATE
-
-/* function Producto(nombre, precio, disponible) {
-  this.nombre = nombre;
-  this.precio = precio;
-  this.disponible = disponible;
-}
-const producto2 = new Producto("Teclado", 1000, false);
-console.log(producto2); */
 let sumartotal = 0;
 let sumaRemera = 0;
 let sumaPantalon = 0;
 let sumaBermuda = 0;
 let sumaCampera = 0;
 const carrito = [];
+
 // CONSTRUCTOR DE OBJETOS
 function productos(id, nombre, precio, cantidad) {
   this.id = id;
@@ -30,7 +22,7 @@ const pantalon = new productos(2, "pantalon", 23000, 1);
 const bermuda = new productos(3, "bermuda", 16000, 1);
 const campera = new productos(4, "campera", 35000, 1);
 
-// solicito ingrese la compra que desea y suma los totales
+// prompt de compra y suma de totales
 while (true) {
   compra = prompt(`seleccione lo que quiera comprar:
 1 para remera 
@@ -64,9 +56,11 @@ y "fin" si desea terminar de comprar`);
   }
   alert(`el subtotal es : ${sumartotal} pesos.`);
 }
+// muestra el array de objetos
+
 console.log(carrito);
 
-//  alert para ver el total gastado
+//  funcion para ver el total gastado
 
 function mostrarResultados() {
   alert(`usted ha comprado:
@@ -100,54 +94,76 @@ function menu() {
     }
   }
 }
+// muestra como queda el carrito
 console.log(carrito);
 
 // quitar productos
 
 function quitarProducto() {
   while (true) {
-    opciones = prompt(` para eliminar remera ingrese: 1
-    para eliminar pantalon ingrese: 2
-    para eliminar bermuda  ingrese: 3
-    para eliminar campera ingrese: 4
-     y para finalizar : fin`);
+    opciones = prompt(`
+     ingrese " remera " para eliminarla;
+     ingrese " pantalon " para eliminarla;
+     ingrese " bermunda " para eliminarla;
+     ingrese " campera " para eliminarla;
+     ingrese " fin " para finalizar;  `);
 
-    if (opciones == 1) {
-      const eliminar = "remera";
-      for (let i = 0; i < carrito.length; i++) {
-        if (carrito[i].nombre === eliminar) {
-          carrito.splice(i, 1);
+    if (opciones == "remera" || opciones === "REMERA") {
+      const index = carrito.findIndex((item) => item.nombre === opciones);
+      if (index !== -1) {
+        carrito.splice(index, 1);
+        if (sumaRemera !== 0) {
+          sumaRemera -= 1;
+          sumartotal -= remera.precio;
         }
       }
-    } else if (opciones == 2) {
-      const eliminar = "pantalon";
-      for (let i = 0; i < carrito.length; i++) {
-        if (carrito[i].nombre === eliminar) {
-          carrito.splice(i, 1);
+    } else if (opciones == "pantalon" || opciones === "PANTALON") {
+      const index = carrito.findIndex((item) => item.nombre === opciones);
+      if (index !== -1) {
+        carrito.splice(index, 1);
+        if (sumaPantalon !== 0) {
+          sumaPantalon -= 1;
+          sumartotal -= pantalon.precio;
         }
       }
-    } else if (opciones == 3) {
-      const eliminar = "bermuda";
-      for (let i = 0; i < carrito.length; i++) {
-        if (carrito[i].nombre === eliminar) {
-          carrito.splice(i, 1);
+    } else if (opciones == "bermuda" || opciones === "BERMUDA") {
+      const index = carrito.findIndex((item) => item.nombre === opciones);
+      if (index !== -1) {
+        carrito.splice(index, 1);
+        if (sumaBermuda !== 0) {
+          sumaBermuda -= 1;
+          sumartotal -= bermuda.precio;
         }
       }
-    } else if (opciones == 4) {
-      const eliminar = "campera";
-      for (let i = 0; i < carrito.length; i++) {
-        if (carrito[i].nombre === eliminar) {
-          carrito.splice(i, 1);
+    } else if (opciones == "campera" || opciones === "CAMPERA") {
+      const index = carrito.findIndex((item) => item.nombre === opciones);
+      if (index !== -1) {
+        carrito.splice(index, 1);
+        if (sumaCampera !== 0) {
+          sumaCampera -= 1;
+          sumartotal -= campera.precio;
         }
       }
     } else if (opciones == "fin" || opciones == "FIN") {
+      // vuelve al menu de opciones
+      estadoCarrito();
       menu();
       break;
     } else {
       alert("opcion invalida, reintente");
       continue;
     }
+    estadoCarrito();
   }
+}
+//estado carrito
+function estadoCarrito() {
+  alert(`Su carrito quedo asi:
+   remeras : ${sumaRemera}
+   bermudas :  ${sumaBermuda} 
+   camperas : ${sumaCampera}
+   pantalones : ${sumaPantalon}
+  el subtotal de la compra es de : ${sumartotal} pesos.`);
 }
 // vaciar carrito
 function vaciarCarrito() {
